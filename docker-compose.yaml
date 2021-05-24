@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  mongo-spaces-backup:
+    build: .
+    image: mongo-spaces-backup
+    environment:
+      SPACES_KEY: digital-ocean-spaces-key
+      SPACES_SECRET: digital-ocean-spaces-secret
+      SPACE_NAME: backups
+      BACKUP_FOLDER: backups/
+      BACKUP_COPIES: 3
+      MONGODB_HOST: localhost
+      MONGODB_PORT: 27017
+      MONGODB_USER: user
+      MONGODB_PASS: password!
+      MONGODB_DB: admin # Omit this env to backup all databases
+      EXTRA_OPTS: --forceTableScan
+      MODE: backup
